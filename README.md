@@ -1,0 +1,1 @@
+g++ src/main.cpp src/Sockets/socket.cpp -o app -lws2_32

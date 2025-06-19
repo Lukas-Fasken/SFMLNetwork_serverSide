@@ -5,26 +5,25 @@
 #include <stdio.h>
 #include <iostream>
 
-// Call this function at the start of your program to initialize Winsock
-inline int InitializeWinsock()
-{
-    WSADATA wsadata;
-    if (WSAStartup(MAKEWORD(2,2), &wsadata) != 0)
-    {
-        std::cerr << "WSA startup failed" << std::endl;
-        return -1;
-    }
-    return 0;
-}
+
+
 
 class Socket
 {
     public:
+    Socket(int version);
     Socket();
-    int Create_socket(int version, int type, int protocol);
-
-    private:
+    void Create_socket(int type, int protocol);
+    void receive_msg();
+    void close_socket();
     
+    private:
+    void Bind_socket();
+    void Listen_for_connections();
+    int sockfd;
+    int newSock;
+    int version {AF_INET};
+    char buffer[1024];
 
 };
 
